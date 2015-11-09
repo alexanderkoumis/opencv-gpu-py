@@ -16,6 +16,7 @@
 static FaceDetector detector;
 static bool init = false;
 
+
 bool init_detector(PyObject* args, bool gpu)
 {
   const char* cascade_file;
@@ -63,7 +64,6 @@ static PyObject* find_faces(PyObject* self, PyObject* args)
     if (PyArg_ParseTuple(args, "s", &image_path))
     {
       std::vector<cv::Rect> face_rects;
-      std::cout << "lols" << std::endl;
       detector.Detect(image_path, face_rects);
       if (face_rects.empty())
       {
@@ -107,7 +107,8 @@ static PyObject* is_cuda_compatible(PyObject* self, PyObject* args)
   Py_RETURN_FALSE;
 }
 
-static PyMethodDef cv2gpuMethods[] = {
+static PyMethodDef cv2gpuMethods[] =
+{
   {"init_cpu_detector" , init_cpu_detector , METH_VARARGS, "Initializes CPU OpenCV FaceRecognizer object" },
   {"init_gpu_detector" , init_gpu_detector , METH_VARARGS, "Initializes GPU OpenCV FaceRecognizer object" },
   {"is_cuda_compatible", is_cuda_compatible, METH_NOARGS , "Checks for CUDA compatibility"                },
@@ -119,7 +120,8 @@ static PyMethodDef cv2gpuMethods[] = {
 
 /* Python 3.x code */
 
-static struct PyModuleDef cv2gpu = {
+static struct PyModuleDef cv2gpu =
+{
   PyModuleDef_HEAD_INIT,
   "cv2gpu", /* name of module */
   NULL,     /* module documentation, may be NULL */

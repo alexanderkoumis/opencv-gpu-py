@@ -45,7 +45,7 @@ cv2gpumodule = Extension('cv2gpu',
                   library_dirs = opencv_deps['library_dirs'],
                   extra_compile_args = ['-std=c++11'])
 
-setup (name = 'OpenCV GPU',
+setup (name = 'cv2gpu',
        version = '1.0',
        description = 'OpenCV GPU Bindings',
        author = 'Alexander Koumis and Matthew Carlis',

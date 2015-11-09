@@ -14,7 +14,8 @@
 #endif
 
 
-class FaceDetector {
+class FaceDetector
+{
  public:
   FaceDetector();
   void Init(const std::string& cascade_file, bool gpu);
@@ -23,5 +24,6 @@ class FaceDetector {
   bool gpu_;
   std::string cascade_file_;
 };
+
 
 #endif

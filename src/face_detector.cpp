@@ -1,6 +1,5 @@
 #include "face_detector.hpp"
 
-// #include <functional>                        // []()
 #include <iostream>                          // cout
 #include <memory>                            // unique_ptr
 #include <mutex>                             // call_once
@@ -24,6 +23,7 @@
   #include <opencv2/imgproc.hpp>             // cvtColor, equalizeHist
   #include <opencv2/objdetect.hpp>           // CascadeClassifier
 #endif
+
 
 FaceDetector::FaceDetector() : gpu_(false)
 {}
@@ -55,8 +55,7 @@ bool FaceDetector::Detect(const char* image_file,
       cv::gpu::GpuMat frame_gpu(frame);
       cv::gpu::GpuMat faces_gpu;
       cv::Mat faces_cpu;
-      std::cout << "hi" << std::endl;
-      int num_faces = cascade_gpu.detectMultiScale(frame_gpu, faces_gpu, 1.2);
+      int num_faces = cascade_gpu.detectMultiScale(frame_gpu, faces_gpu, 2.2);
       faces_gpu.colRange(0, num_faces).download(faces_cpu);
       cv::Rect* faces = faces_cpu.ptr<cv::Rect>();
       for (int i = 0; i < num_faces; ++i)
