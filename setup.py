@@ -2,7 +2,7 @@
 
 import os
 from distutils.core import setup, Extension
-from subprocess import check_output
+from subprocess import Popen, PIPE
 
 # Pkg-config function from https://gist.github.com/abergmeier/9488990
 
@@ -18,7 +18,8 @@ def pkgconfig(*packages, **kw):
     for key, value in flag_map.iteritems():
         kw[value] = []
 
-    for token in check_output(['pkg-config', '--libs', '--cflags', ' '.join(packages)], env=env).split():
+    command = ['pkg-config', '--libs', '--cflags', ' '.join(packages)]
+    for token in Popen(command, stdout=PIPE, env=env).communicate()[0].split():
         key = token[:2]
         try:
             arg = flag_map[key]
