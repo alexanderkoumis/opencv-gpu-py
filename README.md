@@ -51,9 +51,9 @@ python test/test.py
 import cv2gpu
 
 if cv2gpu.is_cuda_compatible():
-    cv2gpu.init_gpu_detector('cascade_frontalface_cpu.xml')
+    cv2gpu.init_gpu_detector('cascade_frontalface_gpu.xml')
 else:
-    cv2gpu.init_cpu_detector('cascade_frontalface_gpu.xml')
+    cv2gpu.init_cpu_detector('cascade_frontalface_cpu.xml')
 
 for (x, y, w, h) in cv2gpu.find_faces('image.jpg'):
     # Do something with face rectangle
